@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enregistrer Audio</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Quicksand', sans-serif;
+        margin-top: 20px;
+    }
+    .audio-controls {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body class="container">
+    <h1 class="mb-4">Enregistrer votre voix</h1>
+    <div class="form-group">
+        <label for="audioQuality">Qualité de l'audio:</label>
+        <select class="form-control" id="audioQuality">
+            <option value="16000" selected>Ultra Basse (16kbs)</option>
+            <option value="32000">Très Basse (32kbs)</option>
+            <option value="64000">Basse (64kbs)</option>
+            <option value="128000">Normale (128kbs)</option>
+            <option value="256000">Bonne (256kbs)</option>
+            <option value="320000">Excellente (320kbs)</option>
+        </select>
+    </div>
+    <div class="d-grid gap-2">
+        <button id="startRecording" class="btn btn-info">Démarrer l'enregistrement</button>
+        <button id="stopRecording" class="btn btn-info" disabled>Arrêter l'enregistrement</button>
+    </div>
+    <p id="status" class="mt-3">Appuyez sur "Démarrer l'enregistrement" pour commencer.</p>
+    <p id="timer" class="mt-2">Durée : 0 seconde(s)</p>
+    <audio id="audioPlayback" class="audio-controls" controls></audio>
+    <div class="d-grid gap-2 mt-3">
+        <button id="downloadButton" class="btn btn-info" disabled>Télécharger l'audio</button>
+    </div>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+        let timerInterval;
+        let secondsElapsed = 0;
+
+        const startButton = document.getElementById('startRecording');
+        const stopButton = document.getElementById('stopRecording');
+        const downloadButton = document.getElementById('downloadButton');
+        const status = document.getElementById('status');
+        const audioPlayback = document.getElementById('audioPlayback');
+        const timerDisplay = document.getElementById('timer');
+        
+        function updateTimer() {
+            secondsElapsed++;
+            timerDisplay.textContent = "Durée : " + secondsElapsed + " seconde(s)";
+        }
+
+        startButton.addEventListener('click', async () => {
+            audioChunks = [];
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const options = {
+                mimeType: 'audio/webm',
+                bitsPerSecond: parseInt(document.getElementById('audioQuality').value)
+            };
+            mediaRecorder = new MediaRecorder(stream, options);
+
+            mediaRecorder.addEventListener('dataavailable', event => {
+                audioChunks.push(event.data);
+            });
+
+            mediaRecorder.addEventListener('stop', () => {
+                clearInterval(timerInterval);
+                const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audioPlayback.src = audioUrl;
+                downloadButton.disabled = false;
+
+                downloadButton.onclick = () => {
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = audioUrl;
+                    a.download = 'enregistrement.webm';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                };
+
+                status.textContent = "Enregistrement terminé. Cliquez pour écouter ou télécharger.";
+            });
+
+            mediaRecorder.start();
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            downloadButton.disabled = true;
+            status.textContent = "Enregistrement en cours...";
+            secondsElapsed = 0;
+            timerDisplay.textContent = "Durée : 0 seconde(s)";
+            timerInterval = setInterval(updateTimer, 1000);
+        });
+
+        stopButton.addEventListener('click', () => {
+            mediaRecorder.stop();
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        });
+    </script>
+</body>
+</html>
