@@ -3,7 +3,11 @@
 ## 📝 Description
 
 A simple and lightweight web application that allows users to record audio directly from their browser. It features customizable audio quality options and an intuitive user interface.
-If you don't want to install complex audio software on your computer but a simpl and quick app to record your voice with quality options, this is the solution. No need to install, it is accessible locally by openning it with your favorite browser.
+If you don't want to install complex audio software on your computer but a simple and quick app to record your voice with quality options, this is the solution. No need to install, it is accessible locally by openning it with your favorite browser on any platform.
+
+## 📷 Screenshot
+
+![](screenshot.png?raw=true "screenshot")
 
 ## ✨ Features
 
