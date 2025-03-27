@@ -25,7 +25,7 @@ If you don't want to install complex audio software on your computer but a simpl
 
 ## 🚀 Quick Usage
 
-1. Open the `index.html` file in a browser
+1. Open the `index.html` file in a browser OR got to deployment github page: [https://olivvius.github.io/simple-voice-recorder/](https://olivvius.github.io/simple-voice-recorder/)
 2. Select the desired audio quality
 3. Click on "Start Recording"
 4. Speak into your microphone
@@ -68,9 +68,23 @@ Can be hosted on:
 
 Apache 2.0 License
 
-## 🔜 Future Improvements
+## 🔜 Possible Future Improvements
 
-- Support for more audio formats
-- Editing recorded audio
-- Direct sharing
+Multilingual support
+
+Support for more audio formats (e.g., MP3, WAV, FLAC)
+
+Editing recorded audio (trim,cut)
+
+Direct sharing (e.g., social media, email, cloud storage)
+
+Cloud backup integration (e.g., Google Drive, Dropbox)
+
+Noise reduction and audio enhancement
+
+Voice-to-text transcription
+
+Dark mode for better accessibility
+
+Metadata editing (title, date, tags)
 
