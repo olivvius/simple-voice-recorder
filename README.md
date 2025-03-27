@@ -25,7 +25,7 @@ If you don't want to install complex audio software on your computer but a simpl
 
 ## 🚀 Quick Usage
 
-1. Open the `index.html` file in a browser
+1. Open the `index.html` file in a browser OR got to deployment github page: [https://olivvius.github.io/simple-voice-recorder/](https://olivvius.github.io/simple-voice-recorder/)
 2. Select the desired audio quality
 3. Click on "Start Recording"
 4. Speak into your microphone
