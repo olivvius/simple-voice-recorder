@@ -68,9 +68,23 @@ Can be hosted on:
 
 Apache 2.0 License
 
-## 🔜 Future Improvements
+## 🔜 Possible Future Improvements
 
-- Support for more audio formats
-- Editing recorded audio
-- Direct sharing
+Multilingual support
+
+Support for more audio formats (e.g., MP3, WAV, FLAC)
+
+Editing recorded audio (trim,cut)
+
+Direct sharing (e.g., social media, email, cloud storage)
+
+Cloud backup integration (e.g., Google Drive, Dropbox)
+
+Noise reduction and audio enhancement
+
+Voice-to-text transcription
+
+Dark mode for better accessibility
+
+Metadata editing (title, date, tags)
 
